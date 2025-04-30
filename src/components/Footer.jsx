@@ -5,8 +5,8 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-text">
-          <p>Made with ❤️ by Sumit Jha</p>
-          <p className="footer-subtext">© 2024 MovieVerse. All rights reserved.</p>
+          <p>Made with ❤️ for movie lovers</p>
+          <p className="footer-subtext">© 2024 MoviesHunt. All rights reserved.</p>
         </div>
         <div className="social-links">
           <a
