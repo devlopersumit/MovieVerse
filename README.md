@@ -1,4 +1,4 @@
-# MovieVerse
+# MoviesHunt
 
 A modern movie application built with React and Vite.
 
