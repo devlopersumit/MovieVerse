@@ -5,7 +5,7 @@ A modern movie application built with React and Vite.
 ## Tech Stack
 
 - React
-- TypeScript
+- Javascript
 - Vite
 - CSS
 
