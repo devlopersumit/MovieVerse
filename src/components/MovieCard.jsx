@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../css/MovieCard.css"
 import { useMovieContext } from "../contexts/MovieContext"
 
@@ -11,7 +12,7 @@ function MovieCard({movie}) {
         else addToFavorites(movie)
     }
 
-    return <div className="movie-card">
+    return <Link to={`/movie/${movie.id}`} className="movie-card">
         <div className="movie-poster">
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="movie-overlay">
@@ -21,10 +22,15 @@ function MovieCard({movie}) {
             </div>
         </div>
         <div className="movie-info">
-            <h3>{movie.title}</h3>
-            <p>{movie.release_date?.split("-")[0]}</p>
+            <h3 className="movie-title">{movie.title}</h3>
+            <div className="movie-meta">
+                <span className="release-date">
+                    {new Date(movie.release_date).getFullYear()}
+                </span>
+                <span className="rating">⭐ {movie.vote_average.toFixed(1)}</span>
+            </div>
         </div>
-    </div>
+    </Link>
 }
 
 export default MovieCard

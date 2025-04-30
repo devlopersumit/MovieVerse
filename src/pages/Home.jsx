@@ -12,11 +12,17 @@ function Home() {
   useEffect(() => {
     const loadPopularMovies = async () => {
       try {
+        setLoading(true);
+        setError(null);
         const popularMovies = await getPopularMovies();
-        setMovies(popularMovies);
+        if (popularMovies && Array.isArray(popularMovies)) {
+          setMovies(popularMovies);
+        } else {
+          setError("Invalid data received from API");
+        }
       } catch (err) {
-        console.log(err);
-        setError("Failed to load movies...");
+        console.error("Error loading movies:", err);
+        setError("Failed to load movies. Please check your API key.");
       } finally {
         setLoading(false);
       }
@@ -27,19 +33,23 @@ function Home() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return
-    if (loading) return
+    if (!searchQuery.trim()) return;
+    if (loading) return;
 
-    setLoading(true)
+    setLoading(true);
+    setError(null);
     try {
-        const searchResults = await searchMovies(searchQuery)
-        setMovies(searchResults)
-        setError(null)
+      const searchResults = await searchMovies(searchQuery);
+      if (searchResults && Array.isArray(searchResults)) {
+        setMovies(searchResults);
+      } else {
+        setError("Invalid search results received");
+      }
     } catch (err) {
-        console.log(err)
-        setError("Failed to search movies...")
+      console.error("Search error:", err);
+      setError("Failed to search movies. Please try again.");
     } finally {
-        setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -58,15 +68,22 @@ function Home() {
         </button>
       </form>
 
-        {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="error-message">
+          {error}
+          <p>Please make sure you have a valid TMDB API key in src/services/api.js</p>
+        </div>
+      )}
 
       {loading ? (
         <div className="loading">Loading...</div>
       ) : (
         <div className="movies-grid">
-          {movies.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))}
+          {movies && movies.length > 0 ? (
+            movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)
+          ) : (
+            !error && <div className="no-results">No movies found</div>
+          )}
         </div>
       )}
     </div>

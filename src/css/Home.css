@@ -61,3 +61,34 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.error-message {
+  color: #e50914;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  background-color: rgba(229, 9, 20, 0.1);
+  border-radius: 4px;
+}
+
+.error-message p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.2rem;
+  grid-column: 1 / -1;
+}
