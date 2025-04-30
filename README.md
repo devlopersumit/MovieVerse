@@ -1,4 +1,13 @@
-# React + Vite
+# MovieVerse
+
+A modern movie application built with React and Vite.
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- CSS
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
